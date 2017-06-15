@@ -1,0 +1,50 @@
+﻿@using Assessment.Web.Models
+@model LoginViewModel
+
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.User, new { @class = "sr-only" })
+        <div class="col-xs-10 col-md-offset-4">
+            @Html.TextBoxFor(m => m.User, new { @class = "form-control", @placeholder = "Usuario" })
+            @Html.ValidationMessageFor(m => m.User, "", new { @class = "text-danger" })
+        </div>
+    </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+                    <div class="col-xs-10 col-md-offset-4">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-10">
+                        <input type="submit" value="Logar" class="btn btn-block btn btn-default" />
+                    </div>
+                </div>
+
+                
+
+
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

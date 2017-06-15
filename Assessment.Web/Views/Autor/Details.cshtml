@@ -1,0 +1,72 @@
+﻿@model Assessment.Web.Models.AutorViewModel
+
+<style>
+    .personal-info {
+        border: solid 2px;
+        background-color: white;
+    }
+</style>
+<div class="container">
+
+    <h1>
+        <button class="btn btn-info btn-lg" onclick="location.href='@Url.Action("GetAll", "Autor")'"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retornar a lista</button>
+        Informação do Autor
+    </h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img name="photo" src="//placehold.it/100" class="avatar img-thumbnail" alt="imagecapa" id="output">
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div style="background-color:none; border: solid 2px;">
+                <h3>@Html.DisplayFor(model => model.Nome)</h3>
+            </div>
+            <div class=" row personal-info">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AutorId, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.AutorId, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sobrenome, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Sobrenome, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

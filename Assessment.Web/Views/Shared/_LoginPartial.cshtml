@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+    {
+    @Html.AntiForgeryToken()
+        <div class="nav navbar-nav col-md-8" style="margin-top:50px;">
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <a href="@Url.Action("Index", "Manage" )" class="semi-transparent-button with-border is-blue btn-block" style="margin-top:20px">
+                        Olá @User.Identity.GetUserName() !
+                    </a>
+                    <a href="@Url.Action("Index", "Home" )" class="semi-transparent-button with-border is-blue btn-block" style="margin-top:20px">
+                        Listas
+                    </a>
+                    <a href="@Url.Action("Create", "Livro" )" class="semi-transparent-button with-border is-blue btn-block" style="margin-top:20px">
+                        Cadastrar Livro
+                    </a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn-block is-blue semi-transparent-button with-border" style="margin-top:20px">
+                        Log off
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="nav navbar-nav col-md-8" style="margin-top:50px;">
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-10">
+                <a href="@Url.Action("Register", "Account" )" class="semi-transparent-button is-blue with-border btn-block" style="margin-top:20px">
+                    Registrar
+                </a>
+                <a href="@Url.Action("Login", "Account" )" class="semi-transparent-button is-blue with-border btn-block" style="margin-top:20px">
+                    Logar
+                </a>
+            </div>
+            </div>
+        </div>
+            }

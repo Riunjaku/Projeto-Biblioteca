@@ -1,0 +1,25 @@
+﻿@model Assessment.Web.Models.LivroViewModel
+
+<style>
+    .alert-box {
+        margin-top: 15%;
+        margin-left: 25%;
+        margin-right: 25%;
+        height: 150px;
+        font-size: 22px;
+    }
+</style>
+
+<div class="alert alert-danger alert-dismissable alert-box">
+    <i class="fa fa-coffee"></i>
+    Tem certeza que deseja excluir o livro, @Html.DisplayFor(model => model.Titulo) .
+</div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit"  style="max-width:100%" value="Deletar" class="btn btn-block btn-danger btn-lg"  /> 
+        </div>
+    }
+

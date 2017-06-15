@@ -1,0 +1,92 @@
+﻿@model Assessment.Web.Models.LivroViewModel
+
+<style>
+    .personal-info {
+        border: solid 2px;
+        background-color: white;
+    }
+</style>
+<div class="container">
+
+    <h1> 
+        <button class="btn btn-info btn-lg" onclick="location.href='@Url.Action("GetAll", "Livro")'"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retornar a lista</button>
+    Informação do Livro</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img name="photo" src="//placehold.it/100" class="avatar img-thumbnail" alt="imagecapa" id="output">
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div style="background-color:none; border: solid 2px;">
+                <h3>@Html.DisplayFor(model => model.Titulo)</h3>
+            </div>
+            <div class=" row personal-info">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LivroId, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.LivroId, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @foreach (var item in Model.Autores)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Autores, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                            <div class="col-lg-8" style="margin-bottom:5px;">
+                               @Html.DisplayFor(modelItem => item.Sobrenome) , @Html.DisplayFor(modelItem => item.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Editora, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Editora, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Edicao, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayFor(model => model.Edicao, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-8" style="margin-bottom:5px;">
+                        @Html.DisplayTextFor(model => model.Comentario)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+<div class="col-xs-6" style="height:100%;">
+    <a href='@Url.Action("GetAll", "Livro")'>
+        <img src='@Url.Content("~/Image/Livro_Lista.jpg")' style="width: 100%; height: 500px;"/>
+    </a>
+</div>
+
+@*<div class="col-xs-4" style="height:100%;">
+    <a href='@Url.Action("GetAll", "Emprestimo")'>
+        <img src='@Url.Content("~/Image/Emprestimo_Lista.jpg")' style="width: 100%; height: 500px;"/>
+    </a>
+</div>*@
+<div class="col-xs-6" style="height:100%;">
+    <a href='@Url.Action("GetAll", "Autor")'>
+        <img src='@Url.Content("~/Image/Autor_Lista.jpg")' style="width: 100%; height: 500px;" />
+    </a>
+</div>
+}
+else
+{
+    <div class="col-xs-12" style="height:100%;">
+        <img src='@Url.Content("~/Image/Acesso_Negado.png")' />
+    </div>
+}

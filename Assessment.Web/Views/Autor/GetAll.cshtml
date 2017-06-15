@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Assessment.Web.Models.AutorViewModel>
+
+<style>
+    .glyphicon {
+        margin-right: 5px;
+    }
+
+    .thumbnail {
+        margin-bottom: 20px;
+        padding: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+
+    .item.list-group-item {
+        float: none;
+        width: 100%;
+        background-color: #fff;
+        margin-bottom: 10px;
+    }
+
+        .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+            background: #428bca;
+        }
+
+        .item.list-group-item .list-group-image {
+            margin-right: 10px;
+        }
+
+        .item.list-group-item .thumbnail {
+            margin-bottom: 0px;
+        }
+
+        .item.list-group-item .caption {
+            padding: 9px 9px 0px 9px;
+        }
+
+        .item.list-group-item:nth-of-type(odd) {
+            background: #eeeeee;
+        }
+
+        .item.list-group-item:before, .item.list-group-item:after {
+            display: table;
+            content: " ";
+        }
+
+        .item.list-group-item img {
+            float: left;
+        }
+
+        .item.list-group-item:after {
+            clear: both;
+        }
+
+    .list-group-item-text {
+        margin: 0 0 11px;
+    }
+</style>
+<div class="well well-sm">
+    <strong>Category Title</strong>
+    <div class="btn-group">
+        <a href="#" id="list" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th-list">
+            </span>List
+        </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th"></span>Grid
+        </a>
+    </div>
+</div>
+<div id="products" class="row list-group">
+
+    @Html.AntiForgeryToken()
+    @foreach (var item in Model)
+    {
+
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                @*@if (item.Image != null)
+                        {
+                        <div class="image col-sm-3 col-md-3">
+                            <p>Imagem:</p>
+                            <img class="group list-group-image" src="@Html.DisplayFor(modelItem => item.Image)" alt="...">
+                        </div>
+
+                    }*@
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Nome : @Html.DisplayFor(modelItem => item.Sobrenome) , @Html.DisplayFor(modelItem => item.Nome)
+                    </h4>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-xs-12 col-md-6">
+                            <button class="btn btn-block btn-info" style="margin-top:10px;" onclick="location.href='@Url.Action("Details", "Autor", new { id = item.AutorId })'">Informações</button>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <button class="btn btn-block btn-warning" style="margin-top:10px;" onclick="location.href='@Url.Action("Edit", "Autor", new { id = item.AutorId })'">Editar</button>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-xs-12 col-md-12">
+                            <button class="btn btn-block btn-danger" style="margin-bottom:10px;" onclick="location.href='@Url.Action("Delete", "Autor", new { id = item.AutorId })'">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>

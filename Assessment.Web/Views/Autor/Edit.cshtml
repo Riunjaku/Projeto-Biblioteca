@@ -1,0 +1,88 @@
+﻿@model Assessment.Web.Models.AutorViewModel
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="container">
+        <h1>Editando Livro</h1>
+        <hr>
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <img src="//placehold.it/100" class="avatar img-thumbnail" alt="imagecapa" id="output">
+                    <h6>Trocar foto de capa</h6>
+
+                    <input type="file" onchange="loadFile(event)" class="form-control disabled">
+                </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-9 personal-info">
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    Verifique os dados antes de enviar a edição do Autor.
+                </div>
+                <h3>Informação do livro</h3>
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.AutorId, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                        <div class="col-lg-8" style="margin-bottom:5px;">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sobrenome, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                        <div class="col-lg-8" style="margin-bottom:5px;">
+                            @Html.EditorFor(model => model.Sobrenome, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Sobrenome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                        <div class="col-lg-8" style="margin-bottom:5px;">
+                            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                        <div class="col-lg-8" style="margin-bottom:5px;">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                       @Html.HiddenFor(model => model.Selecionado, htmlAttributes: new { @class = "col-lg-4 control-label" })
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-3">
+                            <input type="submit" value="Editar" class="btn btn-warning btn-block" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

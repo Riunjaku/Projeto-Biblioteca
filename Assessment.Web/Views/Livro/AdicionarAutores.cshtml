@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Assessment.Web.Models.AutorViewModel>
+
+@{
+    ViewBag.Title = "Adicionar Autores";
+}
+
+<h2>
+    <button class="btn btn-default btn-lg" onclick="location.href='@Url.Action("GetAll", "Livro")'"><span class="glyphicon glyphicon glyphicon-arrow-left"></span>Retornar a lista</button>
+    Adicionar Autores
+</h2>
+<br />
+<hr />
+<p>
+    <button class="btn btn-block btn-default" onclick="location.href='@Url.Action("Create", "Autor")'">Criar novo autor</button>
+</p>
+<table class="table" style="background-color: white;">
+    <tr style="background-color:aqua;">
+        <th>
+            @Html.DisplayNameFor(model => model.AutorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Selecionado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Selecionado)
+            </td>
+            <td>
+                @{
+                    if (item.Selecionado == false)
+                    {
+                        @Html.ActionLink("Adicionar autor", "FazRelacionamento", new { id = item.AutorId }, new { @class = "btn btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Remover autor", "DesfazRelacionamento", new { id = item.AutorId }, new { @class = "btn btn-danger" })
+                    }
+                }
+            </td>
+        </tr>
+                    }
+
+</table>

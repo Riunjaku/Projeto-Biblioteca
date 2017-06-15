@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/Content/LayoutTest.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/LayoutTest.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div class="row row-offcanvas row-offcanvas-left">
+
+
+                <!-- sidebar -->
+                <div class="column col-xs-3 sidebar-offcanvas" style="margin-top: 0px;padding-top: 180px; background-image:url(/Image/capa_livro.jpg);" id="sidebar">
+
+                    <ul class="nav">
+                        <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                    <!-- tiny only nav-->
+                    <ul class="nav visible-xs" id="xs-menu"></ul>
+
+                </div>
+                <!-- /sidebar -->
+                <!-- main right col -->
+                <div class="column col-sm-9 col-xs-9" id="main">
+
+                    <!-- top nav -->
+
+                        <div class="full col-sm-12">
+
+                                <!-- main col left -->
+                                <div class="row col-sm-12">
+
+                                    @RenderBody()
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
